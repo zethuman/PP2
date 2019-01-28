@@ -11,7 +11,7 @@ namespace Program
             int[] arr = new int[n];
             List<int> Prime = new List<int>();  // Создал список чтобы легче было хранить данные и посчитать сколько их
 
-            string[] str = Console.ReadLine().Split(new char[] { ' ', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries); //пропускал пробелы и записывал в строку
+            string[] str = Console.ReadLine().Split(); //пропускал пробелы и записывал в строку
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -37,13 +37,13 @@ namespace Program
         public static int IsPrime(int num)
         {
             for (int i = 2; i <= num; i++) // перебираем числа от 2 до число которую передали
-            { 
+            {
                 if ((i == num) || (i > Math.Sqrt(num))) // проверяем если i равно числу которую мы передали (num) то возвращаем true или 1  
                 {                                       // например если 2 = 2 то возвращаем true или 1
                     return 1;                           // нам достаточно проверить до корня числа по Решето Эратосфена
                 }
                 if (num % i == 0 && i != num || num == 1)  // 1 - не простое число
-                {                                          
+                {
                     return 0;                           // исключаем числа которые делиться на числа которые меньше их по Решето Эратосфена
                 }
             }

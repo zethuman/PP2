@@ -10,46 +10,36 @@ namespace Task3
     {
         static void Main(string[] args)
         {
+            int n = int.Parse(Console.ReadLine()); 
+            int[] arr = new int[n];                   // создал массив
+           
 
-            int n = int.Parse(Console.ReadLine());
-            int[] arr = new int[n];
-            List<int> input = new List<int>();
-            string[] str = Console.ReadLine().Split(new char[] { ' ', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] str = Console.ReadLine().Split();
 
-            for (int i = 0; i < arr.GetLength(0); i++)
+            for (int i = 0; i < n; i++)
             {
-                arr[i] = int.Parse(str[i]);
+                arr[i] = int.Parse(str[i]);  // заполнил массив 
             }
 
-            int[] copy1 = (int[])arr.Clone();
-            int[] copy = (int[])copy1.Clone();
-
-            for (int i = 0; i < copy.GetLength(0) && i < copy1.GetLength(0); i++)
-            {
-                Console.Write(copy[i] + " " + copy[1] + " ");
-            }
-            Console.ReadLine();
-
-
-            ////for(int i = 0; i < arr.GetLength(0); i++)
-            ////{
-            ////    Console.Write(arr[i] + " " + arr[i] + " ");
-            ////}
-            ////Console.ReadLine();
+            Dup(arr, n); // передал методу Dup
 
         }
 
-        public static List<int> Dup(List<int> num)
+        public static void Dup(int []arr2, int m)
         {
-            List<int> result = new List<int>();
-            List<int> repeat = new List<int>();
-            for (int i = 0; i < num.Count; i++)
+            List<int> repeat = new List<int>(); // создал список
+
+            for(int i = 0; i < m; i++)
             {
-                repeat.AddRange(num);
-                result.AddRange(num);
-                result.AddRange(repeat);
+                repeat.Add(arr2[i]); 
+                repeat.Add(arr2[i]); // заполнил два раза
             }
-            return result;
+            
+            for(int i = 0; i < repeat.Count; i++)
+            {
+                Console.Write(repeat[i] + " "); // вывод 
+            }
+            Console.ReadKey();
         }
     }
 }
