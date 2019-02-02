@@ -13,6 +13,7 @@ namespace Task1
         {
             StreamReader sr = new StreamReader("../../input.txt"); 
             string s = sr.ReadToEnd(); // считал строку из инпута 
+
           
             int n = s.Length; // присваевал к n чтобы было легче
 
@@ -27,6 +28,7 @@ namespace Task1
             }
             Console.WriteLine("Yes"); // иначе Yes
             Console.ReadKey();
+            sr.Close(); //  закрыл поток 
         }
     }
     
