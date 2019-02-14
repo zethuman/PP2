@@ -11,11 +11,11 @@ namespace Part2
     {
         static void Main(string[] args)
         {
-            Explorer FileManager = new Explorer();
-            FileManager.Start(@"F:\Source\PP2\Week3\TestFiles");
+            Explorer FileManager = new Explorer();                   // создал новый FileManager
+            FileManager.Start(@"F:\Source\PP2\Week3\TestFiles");     // вызвал через путь   
         }
     }
-    class Explorer
+    class Explorer                       // создал новый класс 
     {
         public int cursor;
         public int size;
@@ -24,35 +24,35 @@ namespace Part2
             cursor = 0;
         }
 
-        public void Delete(FileSystemInfo fs)
+        public void Delete(FileSystemInfo fs)                    // метод для удаления файла --Delete
         {
-            if (fs.GetType() == typeof(DirectoryInfo))
-                Directory.Delete(fs.FullName, true);
+            if (fs.GetType() == typeof(DirectoryInfo))  
+                Directory.Delete(fs.FullName, true);            // удалить файл
             else
             {
-                FileInfo file = new FileInfo(fs.FullName);
+                FileInfo file = new FileInfo(fs.FullName);     // удалить файл даже если это папка
                 fs.Delete();
             }
         }
 
-        public void TextFile(string path)
+        public void TextFile(string path)                     // метод для чтение через enter
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
-            StreamReader sr = new StreamReader(path);
-            string s = sr.ReadToEnd();
-            Console.WriteLine(s);
+            Console.Clear();                                  // очищаем консоль 
+            StreamReader sr = new StreamReader(path);         
+            string s = sr.ReadToEnd();                        // считываем с файла
+            Console.WriteLine(s);                             // вывожу в консоль 
             ConsoleKeyInfo k = Console.ReadKey();
-            if (k.Key == ConsoleKey.Escape)
+            if (k.Key == ConsoleKey.Escape)                   // закрываю если нажал на клавишу Esc
             {
-                sr.Close();
+                sr.Close();                                   // закрываю поток
                 return;
             }
             else
-                TextFile(path);
+                TextFile(path);                               //иначе показываем содержимое 
         }
 
-        public void Color(FileSystemInfo file, int index)
+        public void Color(FileSystemInfo file, int index)     // метод для цветов консоли,текста и курсора
         {
             if (index == cursor)
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -68,7 +68,7 @@ namespace Part2
             }
         }
 
-        public void Interface()
+        public void Interface()                             // метод для удобства, подсказки
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.BackgroundColor = ConsoleColor.Black;
@@ -83,7 +83,7 @@ namespace Part2
             Console.WriteLine();
         }
 
-        public void Show(string path)
+        public void Show(string path)                                 // метод который показывает файлы 
         {
             DirectoryInfo directory = new DirectoryInfo(path);
             FileSystemInfo[] files = directory.GetFileSystemInfos();
@@ -98,22 +98,22 @@ namespace Part2
             }
         }
 
-        public void Start(string path)
+        public void Start(string path)                                     
         {
 
-            ConsoleKeyInfo key = Console.ReadKey();
+            ConsoleKeyInfo key = Console.ReadKey();                  // считывает комманду с консоли 
             FileSystemInfo fs = null;
-            while (key.Key != ConsoleKey.F4)
+            while (key.Key != ConsoleKey.F4)                         // работает пока не нажали клавишу f4
             {
                 DirectoryInfo directory = new DirectoryInfo(path);
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Clear();
-                Show(path);
+                Show(path);                                           // вызываю метод Show
                 if (size != 0)
                 {
                     key = Console.ReadKey();
                     fs = directory.GetFileSystemInfos()[cursor];
-                    if (key.Key == ConsoleKey.Enter)
+                    if (key.Key == ConsoleKey.Enter)                  // комманды для выполнение 
                     {
                         if (fs.GetType() == typeof(DirectoryInfo))
                         {
@@ -143,9 +143,9 @@ namespace Part2
                         ConsoleKeyInfo k = Console.ReadKey();
                         s = Path.Combine(directory.FullName, s);
                         if (fs.GetType() == typeof(DirectoryInfo))
-                            Directory.Move(fs.FullName, s);
+                            Directory.Move(fs.FullName, s);         
                         else
-                            File.Move(fs.FullName, s);
+                            File.Move(fs.FullName, s);               // чтобы переименовать можем использовать функцию Move
                     }
                     else if (key.Key == ConsoleKey.UpArrow)
                     {
