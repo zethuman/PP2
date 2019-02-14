@@ -9,25 +9,36 @@ namespace Task4
 {
     class Program
     {
-        static void Main(string[] args)
+
+        public static void Start()    
         {
-            string origin = @"F:\Source\PP2\Week2\Task4\Task4/path";
-            string copy = @"F:\Source\PP2\Week2\Task4\Task4\path1";
+            string origin = @"F:\Source\PP2\Week2\Task4\Task4\path";  // оргинальная папка 
+            string fileName = Console.ReadLine();          // имя папки через консоль
 
-            string fileName = Console.ReadLine();
+            origin = Path.Combine(origin, fileName);   // создал файл в оригинальной папке    
 
-            origin = Path.Combine(origin, fileName);
-            copy = Path.Combine(copy, fileName);
+            File.WriteAllText(origin, "ne lyublyu pisat' kommenty");    //  что то пишем
 
-            File.Create(origin).Close();
-            File.Copy(origin, copy);
-          
-            Console.WriteLine("File Copied");
+            string copy = @"F:\Source\PP2\Week2\Task4\Task4\path1";     // папка куда будем скопировать 
+            string copyfile = Path.Combine(copy, fileName);  //создаем файл на второй папке
 
-            File.Delete(origin);
+            File.Copy(origin, copyfile, true);     //скопируем файл с оригинального на второй
 
-            Console.WriteLine("File deleted in origin");
-            Console.ReadKey();
+            Delete(origin);        // вызываю метод чтобы удалить оригинальный файл
+        }
+
+        public static void Delete(string path)
+        {
+            if (File.Exists(path))
+            {     // если папка существует, удаляю
+                File.Delete(path);
+            }
+        }
+
+        public static void Main(string[] args)
+        {
+            Start();       //вызываю метод
+
 
 
         }
