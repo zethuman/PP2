@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1
+namespace SnakeGame
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.SetWindowSize(75,75);
-            Console.SetBufferSize(75,75);
-            Console.ReadKey();
+            GameState game = new GameState('0');
+            game.Start();
         }
     }
 }

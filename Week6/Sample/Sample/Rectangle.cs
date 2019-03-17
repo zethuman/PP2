@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1
+namespace Sample
 {
-    class Point
+    public class Rectangle : ShapeofAll
     {
+        public Rectangle(int x, int y) : base(x, y)
+        {
+
+        }
     }
 }
