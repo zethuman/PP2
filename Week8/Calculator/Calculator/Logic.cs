@@ -34,7 +34,7 @@ namespace Calculator
         }
         public static Double Square(Double a)
         {
-            return Math.Pow(a,2);
+            return Math.Pow(a, 2);
         }
         public static Double Sin(Double a)
         {
@@ -44,9 +44,36 @@ namespace Calculator
         {
             return Math.Cos((a * Math.PI) / 180);
         }
-       
-        
 
+        public static Int32 Cop(Int32 a, Int32 b)
+        {
+            if (__gcd(a, b) == 1)
+                return 1;
+            else
+                return a;
+        }
+        public static int __gcd(int a, int b)
+        {
+
+            if (a == 0 || b == 0)
+                return 0;
+
+
+            if (a == b)
+                return a;
+
+
+            if (a > b)
+                return __gcd(a - b, b);
+
+            return __gcd(a, b - a);
+        }
 
     }
+
+
+
+
+
 }
+

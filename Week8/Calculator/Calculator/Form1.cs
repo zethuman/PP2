@@ -86,6 +86,10 @@ namespace Calculator
             {
                 textBox_Result.Text = Logic.Add(result_value, Double.Parse(textBox_Result.Text)).ToString();
             }
+            else if(operation_performed == "Cop")
+            {
+                textBox_Result.Text = Logic.Cop(Int32.Parse(result_value+""), Int32.Parse(textBox_Result.Text)).ToString();
+            }
             else if (operation_performed == "-")
             {
                 textBox_Result.Text = Logic.Sub(result_value ,Double.Parse(textBox_Result.Text)).ToString();
@@ -125,6 +129,11 @@ namespace Calculator
             if (operation == "%")
             {
                 textBox_Result.Text = ((Double.Parse(textBox_Result.Text) / 100)).ToString();
+            }
+            else if(operation == "Bin")
+            {
+                int i = Convert.ToInt32(textBox_Result.Text);
+                textBox_Result.Text = Convert.ToString(i,2);
             }
             else if (operation == "√")
             {
@@ -225,5 +234,7 @@ namespace Calculator
                     break;
             }
         }
+
+        
     }
 }
