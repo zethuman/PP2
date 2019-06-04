@@ -45,29 +45,29 @@ namespace Calculator
             return Math.Cos((a * Math.PI) / 180);
         }
 
-        public static Int32 Cop(Int32 a, Int32 b)
-        {
-            if (__gcd(a, b) == 1)
-                return 1;
-            else
-                return a;
-        }
-        public static int __gcd(int a, int b)
-        {
+        //public static Int32 Cop(Int32 a, Int32 b)
+        //{
+        //    if (__gcd(a, b) == 1)
+        //        return 1;
+        //    else
+        //        return a;
+        //}
+        //public static int __gcd(int a, int b)
+        //{
 
-            if (a == 0 || b == 0)
-                return 0;
-
-
-            if (a == b)
-                return a;
+        //    if (a == 0 || b == 0)
+        //        return 0;
 
 
-            if (a > b)
-                return __gcd(a - b, b);
+        //    if (a == b)
+        //        return a;
 
-            return __gcd(a, b - a);
-        }
+
+        //    if (a > b)
+        //        return __gcd(a - b, b);
+
+        //    return __gcd(a, b - a);
+        //}
 
     }
 

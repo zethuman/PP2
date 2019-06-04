@@ -36,6 +36,11 @@ namespace Random_Krug
             Refresh();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             x = random_krug.Next(0, pictureBox1.Width);

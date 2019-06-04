@@ -86,10 +86,10 @@ namespace Calculator
             {
                 textBox_Result.Text = Logic.Add(result_value, Double.Parse(textBox_Result.Text)).ToString();
             }
-            else if(operation_performed == "Cop")
-            {
-                textBox_Result.Text = Logic.Cop(Int32.Parse(result_value+""), Int32.Parse(textBox_Result.Text)).ToString();
-            }
+            //else if(operation_performed == "Cop")
+            //{
+            //    textBox_Result.Text = Logic.Cop(Int32.Parse(result_value+""), Int32.Parse(textBox_Result.Text)).ToString();
+            //}
             else if (operation_performed == "-")
             {
                 textBox_Result.Text = Logic.Sub(result_value ,Double.Parse(textBox_Result.Text)).ToString();
@@ -130,10 +130,25 @@ namespace Calculator
             {
                 textBox_Result.Text = ((Double.Parse(textBox_Result.Text) / 100)).ToString();
             }
-            else if(operation == "Bin")
+            else if (operation == "Bin")
             {
-                int i = Convert.ToInt32(textBox_Result.Text);
-                textBox_Result.Text = Convert.ToString(i,2);
+                int a = int.Parse(textBox_Result.Text);
+                textBox_Result.Text = Convert.ToString(a, 2);
+            }
+            else if (operation == "Oct")
+            {
+                int a = int.Parse(textBox_Result.Text);
+                textBox_Result.Text = Convert.ToString(a, 8);
+            }
+            else if (operation == "Dec")
+            {
+                int a = int.Parse(textBox_Result.Text);
+                textBox_Result.Text = Convert.ToString(a, 10);
+            }
+            else if (operation == "Hex")
+            {
+                int a = int.Parse(textBox_Result.Text);
+                textBox_Result.Text = Convert.ToString(a, 16);
             }
             else if (operation == "√")
             {

@@ -1,0 +1,203 @@
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+--Distinct
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+
+--Where
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+Note: The WHERE clause is not only used in SELECT statement, it is also used in UPDATE, DELETE statement, etc.!
+
+--Order by 
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+
+--Insert into 
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+--Update
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+--Delete
+DELETE FROM table_name WHERE condition;
+
+--Min, Max
+SELECT MIN(column_name) or Max(column_name)	
+FROM table_name
+WHERE condition;
+
+--Count 
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+
+--Average
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+--Sum
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+--Like
+LIKE Operator	                Description
+WHERE CustomerName LIKE 'a%'	Finds any values that start with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that end with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a_%_%'	Finds any values that start with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that start with "a" and ends with "o"
+
+--In
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+
+--Between
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+--Alias
+SELECT column_name AS alias_name
+FROM table_name;
+
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c, Orders AS o
+WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
+
+--Inner join 
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+--Left join
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name = table2.column_name;
+
+--Right join 
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name = table2.column_name;
+
+
+--union 
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+--Group by
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+
+--Having 
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+Demo Database
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
+
+--Exists
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+
+SELECT SupplierName
+FROM Suppliers
+WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+
+--Insert into select
+INSERT INTO table2
+SELECT * FROM table1
+WHERE condition;
+
+INSERT INTO Customers (CustomerName, City, Country)
+SELECT SupplierName, City, Country FROM Suppliers;
+
+select productname
+from products
+where unitprice > (select AVG(unitprice) from Products) and unitprice < (Select Sum(unitprice)/50 from Products)
+
+
+public Form1()
+        {
+            InitializeComponent();
+            int top = 4;
+            int left = 4;
+            for (int i=0; i<4; i++)
+            {
+                top = 4;
+                for (int j = 0; j < 4; j++)
+                {
+                    Button button = new Button();
+                    button.Left = left;
+                    button.Top = top;
+                    button.Name = "btn" + j+i*(j-1);
+                    button.ForeColor = Color.Gray;
+                    button.BackColor = Color.Gray;
+                    button.Click += ButtonOnClick;
+
+                    this.Controls.Add(button);
+                    top += button.Height + 2;
+                }
+                left += 90;
+            }
+        }
+
+        private void ButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            var button = (Button)sender;
+            if (button != null)
+            {
+                Random random = new Random();
+                int col = random.Next(0, 225);
+                int col2 = random.Next(0, 225);
+                int col3 = random.Next(0, 225);
+                int col4 = random.Next(0, 225);
+
+                button.ForeColor = Color.FromArgb(col, col2, col3, col4);
+                button.BackColor = Color.FromArgb(col, col2, col3, col4);
+            }
+        }
